@@ -26,4 +26,4 @@ services:
       labels:
         - "com.pymet.servicereload.watch=true"
       restart_policy:
-        condition: on-failure```
+        condition: on-failure
