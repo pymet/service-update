@@ -101,13 +101,13 @@ async function cleanup() {
 
 async function watch() {
   const services = await getServices();
-  const enabledServices = [services[0]];
-  const serviceInfo = await Promise.all(enabledServices.map(service => getServiceInfo(service.name)));
+  const serviceInfo = await Promise.all(services.map(service => getServiceInfo(service.name)));
+  const enabledServices = serviceInfo.filter(service => service.enabled);
   if (config.verbose) {
     console.log('Detected services: ');
-    console.log(serviceInfo.map(service => `${service.name} ${service.image}`).join('\n'));
+    console.log(enabledServices.map(service => `${service.name} ${service.image}`).join('\n'));
   }
-  serviceInfo.forEach(async service => {
+  enabledServices.forEach(async service => {
     const imageDownloaded = await pullImage(service.image);
     if (imageDownloaded) {
       await updateService(service);
