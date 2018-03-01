@@ -3,7 +3,8 @@ Update Docker services automatically.
 
 Example:
 
-```version: '3.3'
+```
+version: '3.3'
 services:
   service-update:
     image: daninet/service-update:latest
@@ -24,6 +25,6 @@ services:
     image: registry.yourdomain.com/name/example-watched-app:latest
     deploy:
       labels:
-        - "com.pymet.servicereload.watch=true"
+        - "com.pymet.serviceupdate.watch=true"
       restart_policy:
         condition: on-failure

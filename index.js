@@ -41,7 +41,7 @@ async function getServiceInfo(name) {
   return {
     name,
     labels: data[0].Spec.Labels,
-    enabled: data[0].Spec.Labels['com.pymet.servicereload.watch'] === 'true',
+    enabled: data[0].Spec.Labels['com.pymet.serviceupdate.watch'] === 'true',
     image: data[0].Spec.Labels['com.docker.stack.image']
   };
 }
